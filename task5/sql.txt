@@ -1,0 +1,13 @@
+SELECT 
+  customers.first_name,
+  customers.last_name,
+  customers.email,
+  COUNT(orders.order_id) AS total_orders,
+  SUM(orders.order_total) AS total_order_value
+FROM 
+  customers
+  INNER JOIN orders ON customers.customer_id = orders.customer_id
+GROUP BY 
+  customers.customer_id
+ORDER BY 
+  total_order_value DESC;
